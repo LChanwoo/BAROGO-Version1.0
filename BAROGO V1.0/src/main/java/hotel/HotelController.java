@@ -100,10 +100,6 @@ public class HotelController {
 		ArrayList<HotelPostDTO> alist=null;
 		try {
 			alist= hotelservice.selecthotelsearch(new_str,new_page);
-//			for (Iterator iterator = alist.iterator(); iterator.hasNext();) {
-//				HotelPostDTO hotelPostDTO = (HotelPostDTO) iterator.next();
-//				System.out.println(hotelPostDTO);
-//			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -337,13 +333,7 @@ public class HotelController {
 			return "{\"pay\": 0 }"; 
 		}
 		}catch (Exception e) {}
-//		System.out.println(dto.getProname());
-//		String proname=dto.getProname();
-//		String amount=dto.getAmount();
-//		String buyer_email=dto.getBuyer_email();
-//		String buyer_name=dto.getBuyer_name();
-//		PaymentDto pdto= new PaymentDto(proname, amount, buyer_email, buyer_name);
-		//pService.paymentinfo(pdto);
+
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		Date now_date=	new Date();
 		String now= sdf.format(now_date);
@@ -446,10 +436,6 @@ public class HotelController {
 			
 		}else {}
 		ModelAndView mv= new ModelAndView();
-//		String loginid=(String)session.getAttribute("loginid");
-//		ArrayList<HotelReservationDTO> hrdtos= hotelservice.selectReservationsbyuids(loginid);
-//		System.out.println(hrdtos.get(0).getReservation_id());
-//		mv.addObject("list", hrdtos);
 		mv.setViewName("/hotel/manage/reservation");
 		return mv; 
 		
@@ -644,8 +630,6 @@ public class HotelController {
 			}catch (Exception e) {
 				System.out.println("사진없음");
 				dto.setHotel_picture("/images/barogo_logo1.png");
-//				HotelPictureDTO hpdto= new HotelPictureDTO(hotel_id,"/images/noimage.png");
-//				int hpres = hotelservice.postHotelPicture(hpdto);
 			}finally {
 				int picture_update=hotelservice.updateHotelPicture(dto);
 				System.out.println(picture_update);
@@ -675,7 +659,6 @@ public class HotelController {
 	@RequestMapping("/hotel/manage/delete")
 	public ModelAndView delete(@RequestParam(value = "page", required = false, defaultValue = "1")int page,HttpSession session, HttpServletResponse response){ 
 		logincheker(session, response);
-	//	businesscheker((String)session.getAttribute("loginid"), session, response);
 		String loginid=(String)session.getAttribute("userId");
 		int abd=businesscheker(loginid, session, response);
 		if(abd==0) {
@@ -731,16 +714,6 @@ public class HotelController {
 			}catch (Exception e) {}
 			
 		}
-//		int x= businesscheker(loginid, session, response);
-//		if(x==1) {
-//			try {
-//			response.setContentType("text/html; charset=utf-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>location.href='/hotel/manage';</script>");
-//			out.flush();
-//			}catch (Exception e) {}
-//		}
-		
 		return "/hotel/manage/agree"; 
 	}
 	@RequestMapping("/hotel/manage/joinceo")
